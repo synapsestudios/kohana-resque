@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') OR die('No direct script access.');
 
-class Kohana_Reskue {
+class Synapse_Reskue {
 
 	public static function factory($config = array())
 	{
