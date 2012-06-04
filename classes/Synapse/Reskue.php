@@ -11,7 +11,7 @@ class Synapse_Reskue {
 	{
 		if ( ! $config)
 		{
-			$config = Kohana::config('reskue');
+			$config = Kohana::$config->load('reskue');
 		}
 
 		// Include the php-resque library
