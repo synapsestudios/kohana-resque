@@ -29,6 +29,12 @@ class Task_Worker extends Minion_Task
 		require Kohana::find_file('vendor', 'php-resque/lib/Resque/Worker');
 		require Kohana::find_file('vendor', 'php-resque/lib/Resque/Scheduled');
 
+		// Listen for failures and log them
+		Resque_Event::listen('onFailure', function ($exception, $job) {
+			Kohana::$log->add(LOG::ERROR, 'Error processing queued job, '.$job.', failed with "'.$exception->getMessage().'"');
+			Kohana::$log->write();
+		});
+
 		$loglevel = 0;
 
 		if ($options['verbose'] !== FALSE)
